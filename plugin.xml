@@ -21,6 +21,6 @@
             </feature>
         </config-file>
 
-        <source-file src="src/com/mosalingua/plugin/BatchIntegration.java" target-dir="src/com/mosalingua/BatchIntegration" />
+        <source-file src="src/android/com/mosalingua/plugin/BatchIntegration.java" target-dir="src/com/mosalingua/BatchIntegration" />
      </platform>
 </plugin>

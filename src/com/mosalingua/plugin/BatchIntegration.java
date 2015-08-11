@@ -5,6 +5,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
+import com.batch.android.*;
 
 public class BatchIntegration extends CordovaPlugin {
 public static final String ACTION_CHANGE_LANGUAGE = "changeLanguage";
@@ -14,16 +15,18 @@ public boolean execute(String action, JSONArray args, CallbackContext callbackCo
         try {
                 if (ACTION_CHANGE_LANGUAGE.equals(action)) {
                         JSONObject arg_object = args.getJSONObject(0);
-                        /*Intent calIntent = new Intent(Intent.ACTION_EDIT)
-                                           .setType("vnd.android.cursor.item/event")
-                                           .putExtra("beginTime", arg_object.getLong("startTimeMillis"))
-                                           .putExtra("endTime", arg_object.getLong("endTimeMillis"))
-                                           .putExtra("title", arg_object.getString("title"))
-                                           .putExtra("description", arg_object.getString("description"))
-                                           .putExtra("eventLocation", arg_object.getString("eventLocation"));
-
-                        this.cordova.getActivity().startActivity(calIntent);*/
-                        System.out.println("Inside action, language: " + arg_object.getString("language"));
+                        //System.out.println("Inside action, language: " + arg_object.getString("language"));
+                        String languageAndRegion = arg_object.getString("language");
+                        String[] parts = languageAndRegion.split("_");
+                        String language = parts[0];
+                        String region = parts[1];
+                        BatchUserProfile userProfile = Batch.getUserProfile();
+                        if( userProfile != null ) {
+                                System.out.println("Setting language: " + language + ", region: " + region);
+                                // Use the user profile to set custom language and data
+                                userProfile.setLanguage(language); // Language must be 2 chars, lowercase, ISO 639 formatted
+                                userProfile.setRegion(region); // Region must be 2 chars, uppercase, ISO 3166 formatted
+                        }
                         callbackContext.success();
                         return true;
                 }

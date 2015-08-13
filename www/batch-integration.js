@@ -10,6 +10,15 @@ var batchIntegration = {
                 "language": language
             }]
         );
+    },
+
+    enablePushNotifications: function (successCallback,errorCallback) {
+
+        cordova.exec(
+                successCallback,
+                errorCallback,
+                "BatchIntegration",
+                "enablePushNotifications", []);
     }
 };
 

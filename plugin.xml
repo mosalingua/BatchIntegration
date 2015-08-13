@@ -23,4 +23,16 @@
 
         <source-file src="src/android/com/mosalingua/plugin/BatchIntegration.java" target-dir="src/com/mosalingua/BatchIntegration" />
      </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BatchIntegration">
+                <param name="ios-package" value="BatchIntegration" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/com/mosalingua/plugin/BatchIntegration.h" />
+        <source-file src="src/ios/com/mosalingua/plugin/BatchIntegration.m" />
+    </platform>
 </plugin>

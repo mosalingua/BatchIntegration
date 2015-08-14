@@ -9,6 +9,7 @@ import com.batch.android.*;
 
 public class BatchIntegration extends CordovaPlugin {
 public static final String ACTION_CHANGE_LANGUAGE = "changeLanguage";
+public static final String ACTION_ENABLE_PUSH_NOTIFICATIONS = "enablePushNotifications";
 
 @Override
 public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -29,6 +30,13 @@ public boolean execute(String action, JSONArray args, CallbackContext callbackCo
                         }
                         callbackContext.success();
                         return true;
+                }
+                if(ACTION_ENABLE_PUSH_NOTIFICATIONS.equals(action)) {
+
+                     //TODO code me Jeroen :-)
+                     callbackContext.success();
+                     return true;
+
                 }
                 callbackContext.error("Invalid action");
                 return false;

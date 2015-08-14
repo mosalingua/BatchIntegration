@@ -32,7 +32,7 @@
             </feature>
         </config-file>
 
-        <header-file src="src/ios/com/mosalingua/plugin/BatchIntegration.h" />
-        <source-file src="src/ios/com/mosalingua/plugin/BatchIntegration.m" />
+        <header-file src="src/ios/BatchIntegration.h" />
+        <source-file src="src/ios/BatchIntegration.m" />
     </platform>
 </plugin>

@@ -1,5 +1,6 @@
+cordova.define("com.mosalingua.plugin.BatchIntegration.BatchIntegration", function(require, exports, module) {
 
-var batchIntegration = {
+var BatchIntegration = {
     changeLanguage: function(language, successCallback, errorCallback) {
         cordova.exec(
             successCallback, // success callback function
@@ -17,9 +18,13 @@ var batchIntegration = {
         cordova.exec(
                 successCallback,
                 errorCallback,
-                "BatchIntegration",
-                "enablePushNotifications", []);
+                'BatchIntegration',
+                'enablePushNotifications',
+                []
+        );
     }
 };
 
-module.exports = batchIntegration;
+module.exports = BatchIntegration;
+
+});

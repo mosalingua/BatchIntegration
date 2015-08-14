@@ -9,13 +9,21 @@
     CDVPluginResult* pluginResult = nil;
 
     @try {
+
+        //avoid doing the setup more than once
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:@"HasDoneSetupBash"])
+        {
          // Start Batch SDK.
          [BatchPush setupPush];
          [Batch startWithAPIKey:@"BATCH_API_KEY"];//this is replaced at build time
          // Register for push notifications
          [BatchPush registerForRemoteNotifications];
 
-         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
+         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasDoneSetupBash"];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
     }
     @catch (NSException *exception) {
          pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];

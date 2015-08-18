@@ -34,4 +34,54 @@
 
 }
 
+- (void)changeLanguage:(CDVInvokedUrlCommand*)command {
+
+    CDVPluginResult* pluginResult = nil;
+    @try {
+        NSDictionary *langObject = [command.arguments  objectAtIndex:0];
+        BatchUserProfile *userProfile = [Batch defaultUserProfile];
+
+        if (userProfile!=nil && langObject!=nil) {
+
+            //parse the arguments
+            NSString *languageAndRegion = [langObject valueForKey:@"language"];
+            if(languageAndRegion!=nil) {
+                NSArray *parts = [languageAndRegion componentsSeparatedByString:@"_"];
+                if(parts.count==2) {
+                    NSString *language = [parts objectAtIndex:0];
+                    NSString *region = [parts objectAtIndex:1];
+                    // Use the user profile to set custom language and data
+                    userProfile.language = language; // Language must be 2 chars, lowercase, ISO 639 formatted
+                    userProfile.region = region; // Region must be 2 chars, uppercase, ISO 3166 formatted
+
+                    //Everything parsed OK
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
+                    NSLog(@"Successfully changed Batch language to %@",language);
+                }
+                //something is wrong
+                else {
+                    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];
+                }
+            }
+            else {
+                //something is wrong
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];
+            }
+
+        }
+        else {
+            //something is wrong
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];
+        }
+    }
+    @catch (NSException *exception) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];
+        NSLog(@"Unable to change Batch language: %@",exception.description);
+    }
+    @finally {
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+
+}
+
 @end

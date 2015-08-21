@@ -7,9 +7,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import com.batch.android.*;
 
+import android.content.SharedPreferences;
+import android.content.Context;
+
+import android.preference.PreferenceManager;
+
 public class BatchIntegration extends CordovaPlugin {
 public static final String ACTION_CHANGE_LANGUAGE = "changeLanguage";
 public static final String ACTION_ENABLE_PUSH_NOTIFICATIONS = "enablePushNotifications";
+public static final String ACTION_TOGGLE_PUSH_NOTIFICATIONS = "togglePushNotifications";
 
 @Override
 public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -30,14 +36,23 @@ public boolean execute(String action, JSONArray args, CallbackContext callbackCo
                         }
                         callbackContext.success();
                         return true;
-                }
-                if(ACTION_ENABLE_PUSH_NOTIFICATIONS.equals(action)) {
+                } else if (ACTION_TOGGLE_PUSH_NOTIFICATIONS.equals(action)) {
+                    JSONObject arg_object = args.getJSONObject(0);
+                    Boolean isEnabled = arg_object.getBoolean("isEnabled");
+                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this.cordova.getActivity().getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putBoolean("isNotificationsEnabled", isEnabled);
+                    editor.commit();
+                    callbackContext.success();
+                    return true;
+                } else if(ACTION_ENABLE_PUSH_NOTIFICATIONS.equals(action)) {
 
-                     //TODO code me Jeroen :-)
-                     callbackContext.success();
-                     return true;
+                   //TODO code me Jeroen :-)
+                   callbackContext.success();
+                   return true;
 
                 }
+
                 callbackContext.error("Invalid action");
                 return false;
         } catch(Exception e) {

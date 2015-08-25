@@ -34,6 +34,26 @@
 
 }
 
+- (void)togglePushNotifications:(CDVInvokedUrlCommand*)command {
+    CDVPluginResult* pluginResult = nil;
+    
+    @try {
+        
+        BOOL enabled = [command.arguments objectAtIndex:0];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"isBatchNotificationsEnabled"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
+    }
+    @catch (NSException *exception) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsBool:(false)];
+    }
+    @finally {
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+}
+
 - (void)changeLanguage:(CDVInvokedUrlCommand*)command {
 
     CDVPluginResult* pluginResult = nil;

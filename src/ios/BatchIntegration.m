@@ -20,6 +20,8 @@
          [BatchPush registerForRemoteNotifications];
 
          [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasDoneSetupBash"];
+         //set this bool key as well (can be changed by togglePushNotifications(...))
+         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isBatchNotificationsEnabled"];
          [[NSUserDefaults standardUserDefaults] synchronize];
         }
 
@@ -39,7 +41,8 @@
     
     @try {
         
-        BOOL enabled = [command.arguments objectAtIndex:0];
+        NSDictionary *val = [command.arguments objectAtIndex:0];
+        BOOL enabled = [[val objectForKey:@"isEnabled"] boolValue];
         
         [[NSUserDefaults standardUserDefaults] setBool:enabled forKey:@"isBatchNotificationsEnabled"];
         [[NSUserDefaults standardUserDefaults] synchronize];

@@ -1,0 +1,38 @@
+{
+  "name": "BatchIntegration",
+  "version": "0.1.0",
+  "description": "modify some settings on batch SDK",
+  "cordova": {
+    "id": "com.mosalingua.plugin.BatchIntegration",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mosalingua/BatchIntegration.git"
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "batch",
+    "BatchIntegration",
+    "batch integration",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Paulo Cristo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mosalingua/BatchIntegration/issues"
+  },
+  "homepage": "https://github.com/mosalingua/BatchIntegration#readme"
+}

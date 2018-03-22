@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "modify some settings on batch SDK",
   "cordova": {
-    "id": "com.mosalingua.plugin.BatchIntegration",
+    "id": "com.mosa.plugin.BatchIntegration",
     "platforms": [
       "android",
       "ios"

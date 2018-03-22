@@ -1,4 +1,4 @@
-cordova.define("com.mosalingua.plugin.BatchIntegration.BatchIntegration", function(require, exports, module) {
+cordova.define("com.mosa.plugin.BatchIntegration.BatchIntegration", function(require, exports, module) {
 
     var BatchIntegration = {
         changeLanguage: function(language, successCallback, errorCallback) {

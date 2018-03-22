@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-           id="com.mosalingua.plugin.BatchIntegration"
+           id="com.mosa.plugin.BatchIntegration"
       version="0.1.0">
     <name>BatchIntegration</name>
     <description>Integration with Batch.com</description>
@@ -17,11 +17,11 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="BatchIntegration">
-                <param name="android-package" value="com.mosalingua.plugin.BatchIntegration"/>
+                <param name="android-package" value="com.mosa.plugin.BatchIntegration"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/mosalingua/plugin/BatchIntegration.java" target-dir="src/com/mosalingua/BatchIntegration" />
+        <source-file src="src/android/com/mosa/plugin/BatchIntegration.java" target-dir="src/com/mosa/plugin" />
      </platform>
     <!-- ios -->
     <platform name="ios">

@@ -1,4 +1,4 @@
-package com.mosalingua.plugin;
+package com.mosa.plugin;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;

@@ -1,6 +1,7 @@
 #import "BatchIntegration.h"
 #import <Cordova/CDV.h>
 #import <Batch/Batch.h>
+#import <Batch/BatchPush.h>
 
 @implementation BatchIntegration
 
@@ -105,6 +106,29 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }
 
+}
+
+/**
+ Actually on IOS, we return a push token instead
+ */
+- (void)getPushInstallationId:(CDVInvokedUrlCommand*)command {
+    CDVPluginResult* pluginResult = nil;
+    
+    NSString * installID = @"N/A";
+    @try {
+        
+        if([BatchPush lastKnownPushToken] != nil) {
+            installID = [BatchPush lastKnownPushToken];
+        }
+        
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:installID];
+    }
+    @catch (NSException *exception) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"N/A"];
+    }
+    @finally {
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
 }
 
 @end

@@ -16,6 +16,7 @@ public class BatchIntegration extends CordovaPlugin {
 public static final String ACTION_CHANGE_LANGUAGE = "changeLanguage";
 public static final String ACTION_ENABLE_PUSH_NOTIFICATIONS = "enablePushNotifications";
 public static final String ACTION_TOGGLE_PUSH_NOTIFICATIONS = "togglePushNotifications";
+public static final String ACTION_GET_PUSH_INSTALLATION_ID = "getPushInstallationId";
 
 @Override
 public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -51,6 +52,15 @@ public boolean execute(String action, JSONArray args, CallbackContext callbackCo
                    callbackContext.success();
                    return true;
 
+                }
+                else if(ACTION_GET_PUSH_INSTALLATION_ID.equals(action)) {
+
+                    String identifier = Batch.User.getInstallationID();
+                    if(identifier == null) {
+                      identifier = "N/A";
+                    }
+                    callbackContext.success(identifier);
+                    return true;
                 }
 
                 callbackContext.error("Invalid action");

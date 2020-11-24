@@ -34,6 +34,16 @@ cordova.define("com.mosa.plugin.BatchIntegration.BatchIntegration", function(req
                     "isEnabled": isEnabled
                 }]
             );
+        },
+
+        getPushInstallationId: function(successCallback, errorCallback) {
+            cordova.exec(
+                successCallback,
+                errorCallback,
+                'BatchIntegration',
+                'getPushInstallationId',
+                []
+            );
         }
     };
 
